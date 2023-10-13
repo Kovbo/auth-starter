@@ -15,7 +15,6 @@ model User {
   id        Int     @id @default(autoincrement())
   email     String  @unique
   name      String
-  salt      String
   password  String
   projects  Project[]
 }

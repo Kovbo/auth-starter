@@ -6,7 +6,6 @@ async function main() {
       name: "Bob",
       email: "bob@example.com",
       password: "pass",
-      salt: "salt",
     },
   });
 
