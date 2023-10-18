@@ -55,7 +55,8 @@ const createTask = async (req: Request, res: Response) => {
 };
 
 const editTask = async (req: Request, res: Response) => {
-  const { id, name, completed } = req.body as Task;
+  const { id } = req.params as { id: string };
+  const { name, completed } = req.body as Task;
 
   const task = await prisma.task.findFirstOrThrow({
     where: { id: Number(id) },
@@ -73,4 +74,14 @@ const editTask = async (req: Request, res: Response) => {
   res.json({ data: updatedTask });
 };
 
-export { getAllTasks, createTask, editTask, getTask };
+const deleteTask = async (req: Request, res: Response) => {
+  const { id } = req.params as { id: string };
+
+  const task = await prisma.task.delete({
+    where: { id: Number(id) },
+  });
+
+  res.json({ msg: "Deleted!" });
+};
+
+export { getAllTasks, createTask, editTask, getTask, deleteTask };

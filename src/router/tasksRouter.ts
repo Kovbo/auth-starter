@@ -1,5 +1,6 @@
 import {
   createTask,
+  deleteTask,
   editTask,
   getAllTasks,
   getTask,
@@ -13,5 +14,6 @@ tasksRouter.get("/api/v1/tasks/:id", getTask);
 
 tasksRouter.post("/api/v1/tasks", createTask);
 tasksRouter.post("/api/v1/tasks/:id", editTask);
+tasksRouter.delete("/api/v1/tasks/:id", deleteTask);
 
 export { tasksRouter };

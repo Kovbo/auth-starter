@@ -9,3 +9,4 @@ tasksRouter.get("/api/v1/tasks", tasksController_1.getAllTasks);
 tasksRouter.get("/api/v1/tasks/:id", tasksController_1.getTask);
 tasksRouter.post("/api/v1/tasks", tasksController_1.createTask);
 tasksRouter.post("/api/v1/tasks/:id", tasksController_1.editTask);
+tasksRouter.delete("/api/v1/tasks/:id", tasksController_1.deleteTask);

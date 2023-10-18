@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTask = exports.editTask = exports.createTask = exports.getAllTasks = void 0;
+exports.deleteTask = exports.getTask = exports.editTask = exports.createTask = exports.getAllTasks = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 const getAllTasks = async (req, res) => {
@@ -49,7 +49,8 @@ const createTask = async (req, res) => {
 };
 exports.createTask = createTask;
 const editTask = async (req, res) => {
-    const { id, name, completed } = req.body;
+    const { id } = req.params;
+    const { name, completed } = req.body;
     const task = await prisma.task.findFirstOrThrow({
         where: { id: Number(id) },
     });
@@ -65,3 +66,11 @@ const editTask = async (req, res) => {
     res.json({ data: updatedTask });
 };
 exports.editTask = editTask;
+const deleteTask = async (req, res) => {
+    const { id } = req.params;
+    const task = await prisma.task.delete({
+        where: { id: Number(id) },
+    });
+    res.json({ msg: "Deleted!" });
+};
+exports.deleteTask = deleteTask;

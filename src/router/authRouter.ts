@@ -64,8 +64,9 @@ authRouter.get("/login-failure", (req, res, next) => {
 
 // Visiting this route logs the user out
 authRouter.get("/logout", (req, res, next) => {
-  req.logout();
-  res.redirect("/protected-route");
+  req.logout(() => {
+    res.redirect("/protected-route");
+  });
 });
 
 export { authRouter };
